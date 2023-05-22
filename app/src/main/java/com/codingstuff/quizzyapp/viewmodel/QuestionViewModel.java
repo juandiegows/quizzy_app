@@ -6,11 +6,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.codingstuff.quizzyapp.Adapter.QuestionAdapter;
 import com.codingstuff.quizzyapp.Model.CategoryModel;
 import com.codingstuff.quizzyapp.Model.QuestionModel;
 import com.codingstuff.quizzyapp.Model.ResultModel;
 import com.codingstuff.quizzyapp.repository.MessageResult;
 import com.codingstuff.quizzyapp.repository.QuestionRepository;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +47,26 @@ public class QuestionViewModel extends ViewModel {
 
     public QuestionViewModel() {
     }
-
+    public void get() {
+       questionRepository.GetCollection().get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                    ArrayList<QuestionModel> categoryList = new ArrayList<>();
+                    for (QueryDocumentSnapshot documentSnapshot : querySnapshot) {
+                        String id = documentSnapshot.getId();
+                        QuestionModel question = documentSnapshot.toObject(QuestionModel.class);
+                        question.setId(id);
+                        categoryList.add(question);
+                    }
+                    data.setValue(categoryList);
+                } else
+                    data.setValue(new ArrayList<>());
+            } else {// Manejo de excepciones en caso de error
+                data.setValue(new ArrayList<>());
+            }
+        });
+    }
     public void Insert(QuestionModel questionModel) {
         Map<String, Object> data = new HashMap<>();
         data.put("title", questionModel.getTitle());

@@ -59,7 +59,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.btnDelete.setOnClickListener(
                 view -> {
                     AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext());
-                    builder.setMessage("you want to delete the category "+categories.get(position).getName()+"?")
+                    builder.setMessage("esta seguro de eliminar a  "+categories.get(position).getName()+"?")
                             .setCancelable(false)
                             .setPositiveButton("yes, sure", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {

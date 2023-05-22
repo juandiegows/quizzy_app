@@ -16,12 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.codingstuff.quizzyapp.Adapter.CategoryAdapter;
 import com.codingstuff.quizzyapp.viewmodel.CategoryViewModel;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class CategoriesFragment extends Fragment {
@@ -50,7 +47,7 @@ public class CategoriesFragment extends Fragment {
         //FirebaseApp.initializeApp(getContext());
         btnAddCategory = view.findViewById(R.id.btnAddCategory);
 
-        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerViewQuestion);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
         progressBar = view.findViewById(R.id.progressBar);

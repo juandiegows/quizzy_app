@@ -10,30 +10,35 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.codingstuff.quizzyapp.Adapter.CategoryAdapter;
+import com.codingstuff.quizzyapp.Adapter.CategoryAdapterSelected;
 import com.codingstuff.quizzyapp.Adapter.QuizListAdapter;
 import com.codingstuff.quizzyapp.Model.QuizListModel;
 import com.codingstuff.quizzyapp.R;
 import com.codingstuff.quizzyapp.viewmodel.AuthViewModel;
+import com.codingstuff.quizzyapp.viewmodel.CategoryViewModel;
 import com.codingstuff.quizzyapp.viewmodel.QuizListViewModel;
 
 import java.util.List;
 
 
-public class ListFragment extends Fragment implements QuizListAdapter.OnItemClickedListner {
+public class ListFragment extends Fragment  {
+    CategoryViewModel categoryViewModel = new CategoryViewModel();
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private NavController navController;
-    private QuizListViewModel viewModel;
-    private QuizListAdapter adapter;
+    Button btnPlay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,40 +51,32 @@ public class ListFragment extends Fragment implements QuizListAdapter.OnItemClic
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory
-                .getInstance(getActivity().getApplication())).get(QuizListViewModel.class);
+
     }
 
     @Override
-    public void onViewCreated(@NonNull  View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.listQuizRecyclerview);
         progressBar = view.findViewById(R.id.quizListProgressbar);
         navController = Navigation.findNavController(view);
+        btnPlay = view.findViewById(R.id.buttonPlay);
+        btnPlay.setEnabled(false);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
+        recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new QuizListAdapter(this);
-
-        recyclerView.setAdapter(adapter);
-
-        viewModel.getQuizListLiveData().observe(getViewLifecycleOwner(), new Observer<List<QuizListModel>>() {
-            @Override
-            public void onChanged(List<QuizListModel> quizListModels) {
-                progressBar.setVisibility(View.GONE);
-                adapter.setQuizListModels(quizListModels);
-                adapter.notifyDataSetChanged();
-            }
+        categoryViewModel.GetData().observe(getViewLifecycleOwner(), categoryModels -> {
+            // Crea y asigna un adaptador al RecyclerView
+            CategoryAdapterSelected adapter = new CategoryAdapterSelected(categoryModels);
+            recyclerView.setAdapter(adapter);
+            progressBar.setVisibility(View.GONE);
+            btnPlay.setEnabled(true);
         });
 
+        categoryViewModel.getCategories();
+
     }
 
-    @Override
-    public void onItemClick(int position) {
-       ListFragmentDirections.ActionListFragmentToDetailFragment action =
-               ListFragmentDirections.actionListFragmentToDetailFragment();
-       action.setPosition(position);
-       navController.navigate(action);
-    }
+
 }

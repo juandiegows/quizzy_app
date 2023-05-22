@@ -13,6 +13,9 @@ public class QuestionModel {
     private String answer_correct , title, category;
     private ArrayList<String> answers;
 
+    public QuestionModel() {
+    }
+
     public QuestionModel(String id, String answer_correct, String title, String category, ArrayList<String> answers) {
         this.id = id;
         this.answer_correct = answer_correct;

@@ -21,9 +21,9 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to close the app?")
+        builder.setMessage("¿Desea Salir de la aplicacion?")
                 .setCancelable(false)
-                .setPositiveButton("yes, sure", new DialogInterface.OnClickListener() {
+                .setPositiveButton("si", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Cerrar la aplicación
                         AdminActivity.this.finish();
@@ -39,7 +39,7 @@ public class AdminActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private Button btnSignOut, btnAdminCategory, btnAdminQuestion;
+    private Button btnSignOut, btnAdminCategory, btnAdminQuestion, btnPlay;
     private UserViewModel userViewModel;
 
     @Override
@@ -54,9 +54,11 @@ public class AdminActivity extends AppCompatActivity {
         userViewModel.getIsDataSaved().observe(this, userModelMessageResult -> {
             btnSignOut.setEnabled(true);
             if (userModelMessageResult.isSuccess()) {
-               startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             }
         });
+        btnPlay = findViewById(R.id.btnQuizzy);
+        btnPlay.setOnClickListener(view -> startActivity(new Intent(this, PlayActivity.class)));
         btnAdminCategory.setOnClickListener(
                 view -> startActivity(new Intent(this, AdminCategoryActivity.class))
         );

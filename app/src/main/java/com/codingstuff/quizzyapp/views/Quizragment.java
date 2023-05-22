@@ -53,8 +53,7 @@ public class Quizragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        viewModel = new ViewModelProvider(this , ViewModelProvider.AndroidViewModelFactory
-                .getInstance(getActivity().getApplication())).get(QuestionViewModel.class);
+        viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
     }
 
     @Override
@@ -83,8 +82,6 @@ public class Quizragment extends Fragment implements View.OnClickListener {
 
         quizId = QuizragmentArgs.fromBundle(getArguments()).getQuizId();
         totalQuestions = QuizragmentArgs.fromBundle(getArguments()).getTotalQueCount();
-        viewModel.setQuizId(quizId);
-        viewModel.getQuestions();;
 
         option1Btn.setOnClickListener(this);
         option2Btn.setOnClickListener(this);
@@ -124,20 +121,12 @@ public class Quizragment extends Fragment implements View.OnClickListener {
     private void loadQuestions(int i){
 
         currentQueNo = i;
-        viewModel.getQuestionMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<QuestionModel>>() {
-            @Override
-            public void onChanged(List<QuestionModel> questionModels) {
-                questionTv.setText(String.valueOf(currentQueNo) + ") " + questionModels.get(i - 1).getQuestion());
-                option1Btn.setText(questionModels.get(i - 1).getOption_a());
-                option2Btn.setText(questionModels.get(i - 1).getOption_b());
-                option3Btn.setText(questionModels.get(i - 1).getOption_c());
-                timer = questionModels.get(i-1).getTimer();
-                answer = questionModels.get(i-1).getAnswer();
+        viewModel.getQuestionMutableLiveData().observe(getViewLifecycleOwner(), questionModels -> {
+            {}
 
-                //todo set current que no, to que number tv
-                questionNumberTv.setText(String.valueOf(currentQueNo));
-                startTimer();
-            }
+            //todo set current que no, to que number tv
+            questionNumberTv.setText(String.valueOf(currentQueNo));
+            startTimer();
         });
 
         canAnswer = true;
@@ -218,7 +207,6 @@ public class Quizragment extends Fragment implements View.OnClickListener {
         resultMap.put("wrong" , wrongAnswer);
         resultMap.put("notAnswered" , notAnswerd);
 
-        viewModel.addResults(resultMap);
 
         QuizragmentDirections.ActionQuizragmentToResultFragment action =
                 QuizragmentDirections.actionQuizragmentToResultFragment();

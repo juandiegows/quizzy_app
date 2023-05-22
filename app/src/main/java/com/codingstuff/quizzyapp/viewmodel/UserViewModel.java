@@ -38,7 +38,7 @@ public class UserViewModel extends ViewModel {
                         isDataSaved.setValue(new MessageResult<>(userModel, "login successfully :)", true)); // Datos guardados con éxito
 
                     }else {
-                        isDataSaved.setValue(new MessageResult<>(userModel, "Cannot register user for "+runnable.getException().getMessage()+":)", true)); // Datos guardados con éxito
+                        isDataSaved.setValue(new MessageResult<>(userModel, "Cannot register user for "+runnable.getException().getMessage()+":)", false)); // Datos guardados con éxito
 
                     }
                 }

@@ -2,78 +2,69 @@ package com.codingstuff.quizzyapp.Model;
 
 import com.google.firebase.firestore.DocumentId;
 
+import java.util.ArrayList;
+
 public class QuestionModel {
 
-    @DocumentId
-    private String questionId;
-    private String answer , question , option_a , option_b , option_c;
-    private long timer;
 
-    public QuestionModel(){}
+    private String id;
 
-    public String getQuestionId() {
-        return questionId;
+
+    private String answer_correct , title, category;
+    private ArrayList<String> answers;
+
+    public QuestionModel(String id, String answer_correct, String title, String category, ArrayList<String> answers) {
+        this.id = id;
+        this.answer_correct = answer_correct;
+        this.title = title;
+        this.category = category;
+        this.answers = answers;
     }
 
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
+    public QuestionModel(String id, String title, String answer_correct, ArrayList<String> answers) {
+        this.id = id;
+        this.answer_correct = answer_correct;
+        this.title = title;
+        this.answers = answers;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getCategory() {
+        return category;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getId() {
+        return id;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getOption_a() {
-        return option_a;
+    public String getAnswer_correct() {
+        return answer_correct;
     }
 
-    public void setOption_a(String option_a) {
-        this.option_a = option_a;
+    public void setAnswer_correct(String answer_correct) {
+        this.answer_correct = answer_correct;
     }
 
-    public String getOption_b() {
-        return option_b;
+    public String getTitle() {
+        return title;
     }
 
-    public void setOption_b(String option_b) {
-        this.option_b = option_b;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getOption_c() {
-        return option_c;
+    public ArrayList<String> getAnswers() {
+        return answers;
     }
 
-    public void setOption_c(String option_c) {
-        this.option_c = option_c;
-    }
-
-    public long getTimer() {
-        return timer;
-    }
-
-    public void setTimer(long timer) {
-        this.timer = timer;
-    }
-
-    public QuestionModel(String questionId, String answer, String question, String option_a, String option_b, String option_c, long timer) {
-        this.questionId = questionId;
-        this.answer = answer;
-        this.question = question;
-        this.option_a = option_a;
-        this.option_b = option_b;
-        this.option_c = option_c;
-        this.timer = timer;
+    public void setAnswers(ArrayList<String> answers) {
+        this.answers = answers;
     }
 }

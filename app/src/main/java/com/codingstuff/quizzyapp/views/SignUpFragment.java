@@ -46,6 +46,9 @@ public class SignUpFragment extends Fragment {
                 Toast.makeText(getContext(), userModelMessageResult.getMessage(), Toast.LENGTH_SHORT).show();
 
 
+            }else {
+                Toast.makeText(getContext(), userModelMessageResult.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
 

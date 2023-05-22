@@ -10,6 +10,11 @@ public class CategoryModel {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
     public String getId() {
         return id;
     }

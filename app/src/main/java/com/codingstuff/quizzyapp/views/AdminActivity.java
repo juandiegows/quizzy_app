@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.codingstuff.quizzyapp.AdminQuestionsActivity;
 import com.codingstuff.quizzyapp.MainActivity;
 import com.codingstuff.quizzyapp.R;
 import com.codingstuff.quizzyapp.viewmodel.UserViewModel;
@@ -38,7 +39,7 @@ public class AdminActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private Button btnSignOut, btnAdminCategory;
+    private Button btnSignOut, btnAdminCategory, btnAdminQuestion;
     private UserViewModel userViewModel;
 
     @Override
@@ -48,15 +49,20 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         btnSignOut = findViewById(R.id.btnSignOut);
         btnAdminCategory = findViewById(R.id.btnManageCategory);
+        btnAdminQuestion = findViewById(R.id.btnManageQuestion);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getIsDataSaved().observe(this, userModelMessageResult -> {
             btnSignOut.setEnabled(true);
             if (userModelMessageResult.isSuccess()) {
-                startActivity(new Intent(this, SplashFragment.class));
+               startActivity(new Intent(this, MainActivity.class));
             }
         });
         btnAdminCategory.setOnClickListener(
                 view -> startActivity(new Intent(this, AdminCategoryActivity.class))
+        );
+        btnAdminQuestion.setOnClickListener(
+
+                view -> startActivity(new Intent(this, AdminQuestionsActivity.class))
         );
         btnSignOut.setOnClickListener(
                 view -> {

@@ -9,5 +9,23 @@
         android:id="@+id/listFragment2"
         android:name="com.codingstuff.quizzyapp.views.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment2_to_playQuestionnFragment"
+            app:destination="@id/playQuestionnFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playQuestionnFragment"
+        android:name="com.codingstuff.quizzyapp.PlayQuestionnFragment"
+        android:label="fragment_play_questionn"
+        tools:layout="@layout/fragment_play_questionn" >
+        <action
+            android:id="@+id/action_playQuestionnFragment_to_resultFragment2"
+            app:destination="@id/resultFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment2"
+        android:name="com.codingstuff.quizzyapp.views.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" />
 </navigation>

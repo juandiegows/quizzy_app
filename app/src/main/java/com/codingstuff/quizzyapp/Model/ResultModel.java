@@ -1,22 +1,30 @@
 package com.codingstuff.quizzyapp.Model;
 
-import com.codingstuff.quizzyapp.views.ResultFragment;
-
 public class ResultModel {
 
-    private int correct ,wrong, notAnswered;
+    private static  int correct ,wrong, total;
 
-    public ResultModel(){}
-
-    public int getWrong() {
-        return wrong;
-    }
-
-    public int getCorrect() {
+    public static int getCorrect() {
         return correct;
     }
 
-    public int getNotAnswered() {
-        return notAnswered;
+    public static void setCorrect(int correct) {
+        ResultModel.correct = correct;
+    }
+
+    public static int getWrong() {
+        return wrong;
+    }
+
+    public static void setWrong(int wrong) {
+        ResultModel.wrong = wrong;
+    }
+
+    public static int getTotal() {
+        return total;
+    }
+
+    public static void setTotal(int total) {
+        ResultModel.total = total;
     }
 }

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "421172550",
-    "project_id": "apiquizzy",
-    "storage_bucket": "apiquizzy.appspot.com"
+    "project_number": "806180660622",
+    "project_id": "juegoi",
+    "storage_bucket": "juegoi.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:421172550:android:0eb420bbcfe88fc6f9c147",
+        "mobilesdk_app_id": "1:806180660622:android:20ee34100269954fb070df",
         "android_client_info": {
           "package_name": "com.codingstuff.quizzyapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "421172550-psngi7stoqp1nclveok8s8hvk6ealqco.apps.googleusercontent.com",
+          "client_id": "806180660622-vphgf000e447it6mvt9fc43st3kcm095.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA3cebeENCUj0xyiqnxkBbo-5Z52XsXg2M"
+          "current_key": "AIzaSyDgdQRg5OCYIDESzaWXzBW8KQIGn2WIk14"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "421172550-psngi7stoqp1nclveok8s8hvk6ealqco.apps.googleusercontent.com",
+              "client_id": "806180660622-vphgf000e447it6mvt9fc43st3kcm095.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/fondo_2"
+    tools:context=".PlayQuestionnFragment" >
+
+    <TextView
+        android:id="@+id/txtNQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/blackground_item_category"
+        android:backgroundTint="@color/common_google_signin_btn_text_light_focused"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="10dp"
+        android:text="Pregunta N° 0"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtQPlay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/common_google_signin_btn_text_light_default"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="Esta es la pregunta"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintCircleRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNQuestion" />
+
+    <Button
+        android:id="@+id/PA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="A) Opcion 1"
+        app:layout_constraintEnd_toEndOf="@+id/txtQPlay"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtQPlay"
+        app:layout_constraintTop_toBottomOf="@+id/txtQPlay" />
+
+    <Button
+        android:id="@+id/PB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="b) opcion 2"
+        app:layout_constraintEnd_toEndOf="@+id/PA"
+        app:layout_constraintStart_toStartOf="@+id/PA"
+        app:layout_constraintTop_toBottomOf="@+id/PA" />
+
+    <Button
+        android:id="@+id/PC"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:text="c) opcion 3"
+        app:layout_constraintEnd_toEndOf="@+id/PB"
+        app:layout_constraintStart_toStartOf="@+id/PB"
+        app:layout_constraintTop_toBottomOf="@+id/PB" />
+
+    <Button
+        android:id="@+id/PD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="d) opcion 4"
+        app:layout_constraintEnd_toEndOf="@+id/PC"
+        app:layout_constraintStart_toStartOf="@+id/PC"
+        app:layout_constraintTop_toBottomOf="@+id/PC" />
+</androidx.constraintlayout.widget.ConstraintLayout>

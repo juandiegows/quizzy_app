@@ -63,6 +63,9 @@ public class ListFragment extends Fragment  {
         navController = Navigation.findNavController(view);
         btnPlay = view.findViewById(R.id.buttonPlay);
         btnPlay.setEnabled(false);
+        btnPlay.setOnClickListener(view1 -> {
+            navController.navigate(R.id.action_listFragment2_to_playQuestionnFragment);
+        });
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
 

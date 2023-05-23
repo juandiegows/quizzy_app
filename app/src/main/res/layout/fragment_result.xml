@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple"
+    android:background="@mipmap/fondo_2"
     tools:context=".views.ResultFragment">
 
 
@@ -29,8 +29,8 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="24dp"
-        android:progressDrawable="@drawable/circular_progressbar"
         android:indeterminateTint="@color/light_sky"
+        android:progressDrawable="@drawable/circular_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="90%"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/resultCoutProgressBar"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Result"
+        android:text="Resultados"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -69,8 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="104dp"
-        android:text="Correct Answers :"
-        android:textColor="@color/black"
+        android:text="Respuesta correctas : "
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultCoutProgressBar" />
@@ -81,8 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:textColor="@color/black"
-        android:text="Wrong Answers :"
+        android:text="Incorrectas :"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -93,9 +93,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:textColor="@color/black"
+        android:text="Total preguntas : "
+        android:textColor="@color/white"
         android:textSize="17sp"
-        android:text="Not Answered Questions :"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 

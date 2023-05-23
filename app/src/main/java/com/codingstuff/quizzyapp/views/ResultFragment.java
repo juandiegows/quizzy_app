@@ -1,5 +1,6 @@
 package com.codingstuff.quizzyapp.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,7 +37,7 @@ public class ResultFragment extends Fragment {
 
     private NavController navController;
     private QuestionViewModel viewModel;
-    private TextView correctAnswer , wrongAnswer , notAnswered;
+    private TextView correctAnswer, wrongAnswer, notAnswered;
     private TextView percentTv;
     private ProgressBar scoreProgressbar;
     private String quizId;
@@ -48,6 +49,7 @@ public class ResultFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class ResultFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull  View view, @Nullable  Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
@@ -66,17 +68,18 @@ public class ResultFragment extends Fragment {
         percentTv = view.findViewById(R.id.resultPercentageTv);
         scoreProgressbar = view.findViewById(R.id.resultCoutProgressBar);
         homeBtn = view.findViewById(R.id.home_btn);
+        if(ResultModel.getCorrect() != 0){
+            percentTv.setText((ResultModel.getCorrect()/ResultModel.getTotal() * 100) + "%");
+        }else {
+            percentTv.setText("0%");
+        }
 
-
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_resultFragment_to_listFragment);
-            }
-        });
-
-        quizId = ResultFragmentArgs.fromBundle(getArguments()).getQuizId();
-
+        correctAnswer.setText("" + ResultModel.getCorrect());
+        wrongAnswer.setText("" + ResultModel.getWrong());
+        notAnswered.setText("" + ResultModel.getTotal());
+        homeBtn.setOnClickListener(
+                view1 -> startActivity(new Intent(getContext(), AdminActivity.class))
+        );
 
 
     }

@@ -58,6 +58,7 @@ public class PlayQuestionnFragment extends Fragment {
 
     public void Responder(View view) {
 
+
         ArrayList<Button> buttons = new ArrayList<>(Arrays.asList(btna, btnb, btnc, btnd));
         String respuesta = view.getTag().toString();
         if (respuesta.equalsIgnoreCase(questionModel_actual.getAnswer_correct())) {
@@ -66,6 +67,7 @@ public class PlayQuestionnFragment extends Fragment {
         } else {
             view.setBackgroundColor(Color.RED);
             for (Button button : buttons) {
+                button.setEnabled(false);
                 if (button.getTag().toString().equalsIgnoreCase(questionModel_actual.getAnswer_correct())) {
                     button.setBackgroundColor(Color.GREEN);
                 }
@@ -83,12 +85,13 @@ public class PlayQuestionnFragment extends Fragment {
                 index++;
                 for (Button button : buttons) {
                     button.setBackgroundColor(Color.WHITE);
+                    button.setEnabled(true );
                 }
-                if (i == 10) {
+                if (index == 10) {
                     ResultModel.setCorrect(respuestaBuena);
                     ResultModel.setWrong(10 - respuestaBuena);
                     ResultModel.setTotal(index);
-                    navController.navigate(R.id.action_playQuestionnFragment_to_resultFragment2);
+                    navController.navigate(R.id.play_end);
                 }
                 if (i < questionModels.size()) {
                     CambiarPregunta();
@@ -97,26 +100,27 @@ public class PlayQuestionnFragment extends Fragment {
                     ResultModel.setCorrect(respuestaBuena);
                     ResultModel.setWrong(i - respuestaBuena);
                     ResultModel.setTotal(index);
-                    navController.navigate(R.id.action_playQuestionnFragment_to_resultFragment2);
+                    navController.navigate(R.id.play_end);
                 }
             }
 
-            private void CambiarPregunta() {
-                questionModel_actual = questionModels.get(i);
-                int cantidad = 0;
-                for (CategoryModel categoryModel : CategoryAdapterSelected.categoryModelsFull) {
-                    if (questionModel_actual.getCategory().contains(categoryModel.getId())) {
-                        cantidad++;
-                    }
-                }
-                if (cantidad == 0 && (questionModels.size() - 1 - i) > 10 - index) {
-                    i++;
-                    CambiarPregunta();
-                }
-            }
+
         }, 3000);
     }
+    private void CambiarPregunta() {
+        questionModel_actual = questionModels.get(i);
+        int cantidad = 0;
+        for (CategoryModel categoryModel : CategoryAdapterSelected.categoryModelsFull) {
+            if (questionModel_actual.getCategory().contains(categoryModel.getId())) {
+                cantidad++;
+            }
+        }
+        if (cantidad == 0) {
+            i++;
+            CambiarPregunta();
+        }
 
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -135,6 +139,7 @@ public class PlayQuestionnFragment extends Fragment {
         questionViewModel.GetData().observe(getViewLifecycleOwner(), questionModels1 -> {
 
             questionModels = questionModels1;
+            Collections.shuffle(questionModels);
             if (questionModels1.size() > 0) {
                 questionModel_actual = questionModels.get(0);
 

@@ -32,7 +32,7 @@ import com.codingstuff.quizzyapp.viewmodel.QuizListViewModel;
 import java.util.List;
 
 
-public class ListFragment extends Fragment  {
+public class ListFragment extends Fragment {
     CategoryViewModel categoryViewModel = new CategoryViewModel();
 
     private RecyclerView recyclerView;
@@ -51,7 +51,7 @@ public class ListFragment extends Fragment  {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        CategoryAdapterSelected.categoryModelsFull.clear();
     }
 
     @Override

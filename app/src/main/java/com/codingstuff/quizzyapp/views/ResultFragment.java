@@ -68,9 +68,10 @@ public class ResultFragment extends Fragment {
         percentTv = view.findViewById(R.id.resultPercentageTv);
         scoreProgressbar = view.findViewById(R.id.resultCoutProgressBar);
         homeBtn = view.findViewById(R.id.home_btn);
-        if(ResultModel.getCorrect() != 0){
-            percentTv.setText((ResultModel.getCorrect()/ResultModel.getTotal() * 100) + "%");
-        }else {
+        if (ResultModel.getCorrect() != 0) {
+            double percentage = (double) ResultModel.getCorrect() / ResultModel.getTotal() * 100;
+            percentTv.setText(percentage + "%");
+        } else {
             percentTv.setText("0%");
         }
 

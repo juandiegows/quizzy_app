@@ -100,6 +100,7 @@ public class PlayQuestionnFragment extends Fragment {
                    questionModel_actual = questionModels.get(i);
                     SetQuestion();
                 } else {
+                    index--;
                     ResultModel.setCorrect(respuestaBuena);
                     ResultModel.setWrong(index - respuestaBuena);
                     ResultModel.setTotal(index);
@@ -136,6 +137,8 @@ public class PlayQuestionnFragment extends Fragment {
             }else {
 
             }
+            index = 1;
+            i = 0;
             Collections.shuffle(questionModels);
             if (questionModels.size() > 0) {
                 questionModel_actual = questionModels.get(0);

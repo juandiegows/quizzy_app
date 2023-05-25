@@ -45,9 +45,11 @@ public class CategoryAdapterSelected extends RecyclerView.Adapter<CategoryAdapte
 
             try {
                 if (b) {
-                    CategoryAdapterSelected.categoryModelsFull.remove(categoryModels.get(position));
-                }else {
+
                     categoryModelsFull.add(categoryModels.get(position));
+                }else {
+                    CategoryAdapterSelected.categoryModelsFull.remove(categoryModels.get(position));
+
                 }
             } catch (Exception e) {
 

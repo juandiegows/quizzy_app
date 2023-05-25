@@ -1,6 +1,7 @@
 package com.codingstuff.quizzyapp;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import com.codingstuff.quizzyapp.viewmodel.QuestionViewModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 
 public class PlayQuestionnFragment extends Fragment {
@@ -94,11 +97,11 @@ public class PlayQuestionnFragment extends Fragment {
                     navController.navigate(R.id.play_end);
                 }
                 if (i < questionModels.size()) {
-                    CambiarPregunta();
+                   questionModel_actual = questionModels.get(i);
                     SetQuestion();
                 } else {
                     ResultModel.setCorrect(respuestaBuena);
-                    ResultModel.setWrong(i - respuestaBuena);
+                    ResultModel.setWrong(index - respuestaBuena);
                     ResultModel.setTotal(index);
                     navController.navigate(R.id.play_end);
                 }
@@ -107,20 +110,7 @@ public class PlayQuestionnFragment extends Fragment {
 
         }, 3000);
     }
-    private void CambiarPregunta() {
-        questionModel_actual = questionModels.get(i);
-        int cantidad = 0;
-        for (CategoryModel categoryModel : CategoryAdapterSelected.categoryModelsFull) {
-            if (questionModel_actual.getCategory().contains(categoryModel.getId())) {
-                cantidad++;
-            }
-        }
-        if (cantidad == 0) {
-            i++;
-            CambiarPregunta();
-        }
 
-    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -138,13 +128,22 @@ public class PlayQuestionnFragment extends Fragment {
         btnd.setOnClickListener(view1 -> Responder(view1));
         questionViewModel.GetData().observe(getViewLifecycleOwner(), questionModels1 -> {
 
-            questionModels = questionModels1;
+            Log.i("data", CategoryAdapterSelected.categoryModelsFull.size()+"");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                questionModels = (ArrayList<QuestionModel>) questionModels1.stream()
+                        .filter(question -> CategoryAdapterSelected.categoryModelsFull.stream().anyMatch(category -> category.getId().equals(question.getCategory().split("/")[1])))
+                        .collect(Collectors.toList());
+            }else {
+
+            }
             Collections.shuffle(questionModels);
-            if (questionModels1.size() > 0) {
+            if (questionModels.size() > 0) {
                 questionModel_actual = questionModels.get(0);
 
                 SetQuestion();
 
+
+            }else {
 
             }
 

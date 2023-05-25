@@ -4,7 +4,8 @@ import java.util.UUID;
 
 public class CategoryModel {
     private String id;
-
+    private UUID uuid;
+    private String name;
     public CategoryModel(String id, String name) {
         this.id = id;
         this.name = name;
@@ -23,8 +24,7 @@ public class CategoryModel {
         this.id = id;
     }
 
-    private UUID uuid;
-    private String name;
+
 
     public CategoryModel() {
     }

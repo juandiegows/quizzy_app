@@ -135,7 +135,20 @@ public class PlayQuestionnFragment extends Fragment {
                         .filter(question -> CategoryAdapterSelected.categoryModelsFull.stream().anyMatch(category -> category.getId().equals(question.getCategory().split("/")[1])))
                         .collect(Collectors.toList());
             }else {
-
+                ArrayList<QuestionModel> filteredQuestionModels = new ArrayList<>();
+                for (QuestionModel question : questionModels1) {
+                    boolean found = false;
+                    for (CategoryModel category : CategoryAdapterSelected.categoryModelsFull) {
+                        if (category.getId().equals(question.getCategory().split("/")[1])) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        filteredQuestionModels.add(question);
+                    }
+                }
+                questionModels = filteredQuestionModels;
             }
             index = 1;
             i = 0;
